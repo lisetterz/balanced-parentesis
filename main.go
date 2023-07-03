@@ -29,32 +29,32 @@ func main() {
 
 }
 
-func validateParentheses(s string) bool {
+func validateParentheses(str string) bool {
 
-	if len(s)%2 != 0 {
+	if len(str)%2 != 0 {
 		return false
 	}
 
 	st := []rune{}
-	open := map[rune]rune{
+	parentheses := map[rune]rune{
 		'(': ')',
 		'[': ']',
 		'{': '}',
 	}
 
-	for _, r := range s {
+	for _, j := range str {
 
-		if closer, ok := open[r]; ok {
+		if closer, ok := parentheses[j]; ok {
 			st = append(st, closer)
 			continue
 		}
 
-		l := len(st) - 1
-		if l < 0 || r != st[l] {
+		length := len(st) - 1
+		if length < 0 || j != st[length] {
 			return false
 		}
 
-		st = st[:l]
+		st = st[:length]
 	}
 
 	return len(st) == 0
